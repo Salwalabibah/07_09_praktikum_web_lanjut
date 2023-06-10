@@ -6,6 +6,12 @@
             <div class="pull-left mt-2">
                 <h2>JURUSAN TEKNOLOGI INFORMASI-POLITEKNIK NEGERI MALANG</h2>
             </div>
+            <div class="float-left my-2 mt-5">
+                <form action="{{route('mahasiswa.index')}}" method="GET">
+                    <input type="text" name="search" value="">
+                    <input type="submit" value="search">
+                </form>
+            </div>
             <div class="float-right my-2 mt-5">
                 <a href="{{route('mahasiswa.create')}}" class="btn btn-success">Input Mahasiswa</a>
             </div>
@@ -23,6 +29,8 @@
             <th>Id</th>
             <th>Nim</th>
             <th>Nama</th>
+            <th>Email</th>
+            <th>Tanggal_Lahir</th>
             <th>Kelas</th>
             <th>Jurusan</th>
             <th>No_Handphone</th>
@@ -32,6 +40,8 @@
                 <td>{{$mhs->id}}</td>
                 <td>{{$mhs->Nim}}</td>
                 <td>{{$mhs->Nama}}</td>
+                <td>{{$mhs->Email}}</td>
+                <td>{{$mhs->Tanggal_Lahir}}</td>
                 <td>{{$mhs->Kelas}}</td>
                 <td>{{$mhs->Jurusan}}</td>
                 <td>{{$mhs->No_Handphone}}</td>
@@ -47,4 +57,8 @@
             </tr>
         @endforeach
     </table>
+
+    <div class="pagination-container">
+        {{$mahasiswa->links('pagination::bootstrap-5')}}
+    </div>
 @endsection

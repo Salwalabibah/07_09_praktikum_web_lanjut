@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->char('Nim', 10);
             $table->string('Nama', 100);
-            $table->char('Kelas', 3);
+            $table->char('Kelas', 5);
             $table->string('Jurusan', 100);
             $table->char('No_Handphone', 13);
             $table->timestamps();

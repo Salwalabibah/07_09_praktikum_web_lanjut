@@ -11,6 +11,8 @@
                 <ul class="list-group list-group-flush"  class=" mx-3">
                     <li class="list-group-item"><b>Nim: </b>{{$mahasiswa->Nim}}</li>
                     <li class="list-group-item"><b>Nama: </b>{{$mahasiswa->Nama}}</li>
+                    <li class="list-group-item"><b>Email: </b>{{$mahasiswa->Email}}</li>
+                    <li class="list-group-item"><b>Tanggal Lahir: </b>{{$mahasiswa->Tanggal_Lahir}}</li>
                     <li class="list-group-item"><b>Kelas: </b>{{$mahasiswa->Kelas}}</li>
                     <li class="list-group-item"><b>Jurusan: </b>{{$mahasiswa->Jurusan}}</li>
                     <li class="list-group-item"><b>No Handphone: </b>{{$mahasiswa->No_Handphone}}</li>

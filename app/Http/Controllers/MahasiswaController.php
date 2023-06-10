@@ -11,10 +11,12 @@ class MahasiswaController extends Controller
     public function index(Request $request)
     {
         //menampilkan data menggunakan pagination
-        $mahasiswa = Mahasiswa::all();
-        $posts = Mahasiswa::orderBy('Nim', 'desc')->paginate(6);
-        return view('mahasiswa.index', compact('mahasiswa'))
-        ->with('i', (request()->input('page', 1)-1)*5);
+        if ($request->has('search')) {
+            $mahasiswa = Mahasiswa::where('Nama', 'LIKE', '%'.$request->search.'%')->paginate(5);
+        }else{
+            $mahasiswa = Mahasiswa::paginate(5);
+        }
+        return view('mahasiswa.index', compact('mahasiswa'));
     }
 
     /**
@@ -36,6 +38,8 @@ class MahasiswaController extends Controller
         $request->validate([
             'Nim'=>'required',
             'Nama'=>'required',
+            'Email'=>'required',
+            'Tanggal_Lahir'=>'required',
             'Kelas'=>'required',
             'Jurusan'=>'required',
             'No_Handphone'=>'required',
@@ -79,6 +83,8 @@ class MahasiswaController extends Controller
         $request->validate([
             'Nim'=>'required',
             'Nama'=>'required',
+            'Email'=>'required',
+            'Tanggal_Lahir'=>'required',
             'Kelas'=>'required',
             'Jurusan'=>'required',
             'No_Handphone'=>'required',
