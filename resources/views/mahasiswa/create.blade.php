@@ -39,7 +39,12 @@
                     </div>
                     <div class="form-group">
                         <label for="Kelas">Kelas</label>
-                        <input type="text" name="Kelas" id="Kelas" class="form-control" aria-describedby="Kelas">
+                        {{-- <input type="text" name="Kelas" id="Kelas" class="form-control" aria-describedby="Kelas"> --}}
+                        <select name="Kelas" id="Kelas" class="form-control">
+                            @foreach ($kelas as $kls)
+                                <option value="{{$kls->id}}">{{$kls->nama_kelas}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="Jurusan">Jurusan</label>

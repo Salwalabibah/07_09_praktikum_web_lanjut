@@ -42,7 +42,7 @@
                 <td>{{$mhs->Nama}}</td>
                 <td>{{$mhs->Email}}</td>
                 <td>{{$mhs->Tanggal_Lahir}}</td>
-                <td>{{$mhs->Kelas}}</td>
+                <td>{{$mhs->kelas->nama_kelas}}</td>
                 <td>{{$mhs->Jurusan}}</td>
                 <td>{{$mhs->No_Handphone}}</td>
                 <td>
