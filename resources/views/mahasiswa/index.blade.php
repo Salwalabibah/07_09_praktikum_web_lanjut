@@ -42,7 +42,7 @@
                 <td>{{$mhs->Nama}}</td>
                 <td>{{$mhs->Email}}</td>
                 <td>{{$mhs->Tanggal_Lahir}}</td>
-                <td>{{$mhs->kelas->nama_kelas}}</td>
+                <td>{{optional($mhs->kelas)->nama_kelas}}</td>
                 <td>{{$mhs->Jurusan}}</td>
                 <td>{{$mhs->No_Handphone}}</td>
                 <td>
@@ -52,6 +52,7 @@
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete</button>
+                        <a href="{{route('mahasiswa.nilai', $mhs->Nim)}}" class="btn btn-info">Nilai</a>
                     </form>
                 </td>
             </tr>

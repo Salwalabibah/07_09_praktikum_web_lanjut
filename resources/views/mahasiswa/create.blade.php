@@ -35,7 +35,7 @@
                     </div>
                     <div class="form-group">
                         <label for="Tanggal Lahir">Tanggal Lahir</label>
-                        <input type="text" name="Tanggal Lahir" id="Tanggal Lahir" class="form-control" aria-describedby="Tanggal Lahir">
+                        <input type="date" name="Tanggal Lahir" id="Tanggal Lahir" class="form-control" aria-describedby="Tanggal Lahir">
                     </div>
                     <div class="form-group">
                         <label for="Kelas">Kelas</label>

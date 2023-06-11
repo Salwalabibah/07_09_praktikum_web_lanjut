@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelas;
 use App\Models\Mahasiswa;
+use App\Models\MataKuliah;
 use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
@@ -139,5 +140,11 @@ class MahasiswaController extends Controller
 
         // jika berhasi didelete, akan kembali ke halaman utama
         return redirect()->route('mahasiswa.index')->with('success', 'Mahasiswa Berhasil Didelete');
+    }
+
+    public function nilai(string $nim){
+
+        $mahasiswa = Mahasiswa::with('kelas', 'matakuliah')->where('nim', $nim)->first();
+        return view ('mahasiswa.nilai', compact('mahasiswa'));
     }
 }
