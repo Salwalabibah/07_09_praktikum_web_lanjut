@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <form action="/articles" method="post" enctype="multipart/form-data">
+        <form action="{{route('article.store')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="title">Title: </label>
@@ -10,8 +10,8 @@
                 <label for="content">Content: </label>
                 <textarea name="content" id="" cols="30" rows="10" class="form-control" required="required"></textarea><br>
                 <label for="image">Feature Image: </label>
-                <input type="fie" name="image" id="" class="form-control" required="required"><br>
-                <button type="submit" name="submit" class="btn btn-primary float-lg-right">Simpan</button>
+                <input type="file" class="form-control"
+                required="required" name="image"><br>                <button type="submit" name="submit" class="btn btn-primary float-lg-right">Simpan</button>
             </div>
         </form>
     </div>
