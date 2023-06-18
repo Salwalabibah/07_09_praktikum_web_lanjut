@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Article;
+use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
-    /**
+      /**
      * Display a listing of the resource.
      */
     public function index()
@@ -91,5 +91,11 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         //
+    }
+
+    public function cetak_pdf(){
+        $articles =  Article::all();
+        $pdf = PDF::loadview('articles.articles_pdf', ['articles' => $articles]);
+        return $pdf->stream();
     }
 }
