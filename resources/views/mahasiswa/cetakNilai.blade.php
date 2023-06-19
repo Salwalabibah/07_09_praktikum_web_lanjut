@@ -29,8 +29,6 @@
                 </tr>
                 @endforeach
             </table>
-            <a href="{{route('mahasiswa.cetakKRS', $mahasiswa->Nim)}}" class="btn btn-danger m-5 d-flex align-content-center justify-content-center">Cetak KRS</a>
-            <a href="{{route('mahasiswa.index')}}" class="btn btn-success m-5 d-flex align-content-center justify-content-center">Kembali</a>
         </div>
     </div>
 </div>

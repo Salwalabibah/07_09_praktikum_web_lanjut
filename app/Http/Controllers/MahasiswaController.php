@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kelas;
 use App\Models\Mahasiswa;
 use App\Models\MataKuliah;
+use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -138,5 +139,11 @@ class MahasiswaController extends Controller
     public function nilai(string $nim){
         $mahasiswa = Mahasiswa::with('kelas', 'matakuliah')->where('nim', $nim)->first();
         return view ('mahasiswa.nilai', compact('mahasiswa'));
+    }
+
+    public function cetak_krs(string $nim){
+        $mahasiswa = Mahasiswa::with('kelas', 'matakuliah')->where('Nim', $nim)->first();
+        $pdf = PDF::loadView('mahasiswa.cetakNilai', compact('mahasiswa'));
+        return $pdf->stream();
     }
 }
