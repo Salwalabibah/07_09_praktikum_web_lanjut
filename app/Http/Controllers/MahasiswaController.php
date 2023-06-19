@@ -6,6 +6,7 @@ use App\Models\Kelas;
 use App\Models\Mahasiswa;
 use App\Models\MataKuliah;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MahasiswaController extends Controller
 {
@@ -34,38 +35,35 @@ class MahasiswaController extends Controller
         return view('mahasiswa.create', compact('kelas'));
     }
 
-
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
+
         //validasi data
         $request->validate([
             'Nim'=>'required',
             'Nama'=>'required',
-            'Email'=>'required',
-            'Tanggal_Lahir'=>'required',
-            'Kelas'=>'required',
+            'image_path'=>'required',
+            'kelas_id'=>'required',
             'Jurusan'=>'required',
-            'No_Handphone'=>'required',
         ]);
 
-        $mahasiswa = new Mahasiswa;
-        $mahasiswa->Nim = $request->get('Nim');
-        $mahasiswa->Nama = $request->get('Nama');
-        $mahasiswa->Email = $request->get('Email');
-        $mahasiswa->Tanggal_Lahir = $request->get('Tanggal_Lahir');
-        $mahasiswa->Jurusan = $request->get('Jurusan');
-        $mahasiswa->No_Handphone = $request->get('No_Handphone');
-        $mahasiswa->save();
 
-        $kelas = new Kelas;
-        $kelas->id = $request->get('Kelas');
+        if($request->hasFile('image_path')){
+            $foto = $request->file('image_path')->store('images', 'public');
+        }
 
-        // fungsi eloquent untuk menambah data dengan relasi belongsTo
-        $mahasiswa->kelas()->associate($kelas);
-        $mahasiswa->save();
+
+        Mahasiswa::create([
+            'Nim'=>$request->get('Nim'),
+            'Nama'=>$request->get('Nama'),
+            'image_path'=>$foto,
+            'kelas_id'=>$request->get('kelas_id'),
+            'Jurusan'=>$request->get('Jurusan'),
+        ]);
+
 
         // jika berhasi ditambahkan, akan kembali ke halaman utama
         return redirect()->route('mahasiswa.index')->with('success', 'Mahasiswa Berhasil Ditambahkan');
@@ -99,32 +97,27 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, string $Nim)
     {
+        $mahasiswa = Mahasiswa::find($Nim);
         //validasi data
         $request->validate([
             'Nim'=>'required',
             'Nama'=>'required',
-            'Email'=>'required',
-            'Tanggal_Lahir'=>'required',
-            'Kelas'=>'required',
+            'image_path'=>'required',
+            'kelas_id'=>'required',
             'Jurusan'=>'required',
-            'No_Handphone'=>'required',
         ]);
 
-        $mahasiswa = Mahasiswa::with('kelas')->where('Nim', $Nim)->first();
-        $mahasiswa->Nim = $request->get('Nim');
-        $mahasiswa->Nama = $request->get('Nama');
-        $mahasiswa->Email = $request->get('Email');
-        $mahasiswa->Tanggal_Lahir = $request->get('Tanggal_Lahir');
-        $mahasiswa->Jurusan = $request->get('Jurusan');
-        $mahasiswa->No_Handphone = $request->get('No_Handphone');
-        $mahasiswa->save();
+        $mahasiswa->update($request->except('image_path'));
+        if($request->hasFile('image_path')){
+            if($mahasiswa->image_path && file_exists(storage_path('app/public/' . $mahasiswa->image_path))){
+                Storage::delete('public/' . $mahasiswa->image_path);
+            }
+            $image = $request->file('image_path')->store('images', 'public');
 
-        $kelas = new Kelas;
-        $kelas->id = $request->get('Kelas');
+            $mahasiswa->image_path = $image;
+            $mahasiswa->save();
+        }
 
-        // fungsi eloquent untuk menambah data dengan relasi belongsTo
-        $mahasiswa->kelas()->associate($kelas);
-        $mahasiswa->save();
 
         // jika berhasi diupdate, akan kembali ke halaman utama
         return redirect()->route('mahasiswa.index')->with('success', 'Mahasiswa Berhasil Diupdate');
@@ -143,7 +136,6 @@ class MahasiswaController extends Controller
     }
 
     public function nilai(string $nim){
-
         $mahasiswa = Mahasiswa::with('kelas', 'matakuliah')->where('nim', $nim)->first();
         return view ('mahasiswa.nilai', compact('mahasiswa'));
     }

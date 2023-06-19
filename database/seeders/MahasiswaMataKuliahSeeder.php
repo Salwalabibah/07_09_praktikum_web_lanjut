@@ -16,22 +16,22 @@ class MahasiswaMataKuliahSeeder extends Seeder
         //
         $mhsMatkul = [
             [
-                'mahasiswa_id' => '1',
+                'mahasiswa_id' => '116110031',
                 'matakuliah_id' => '1',
                 'nilai' => 'A'
             ],
             [
-                'mahasiswa_id' => '1',
+                'mahasiswa_id' => '116110031',
                 'matakuliah_id' => '2',
                 'nilai' => 'A'
             ],
             [
-                'mahasiswa_id' => '1',
+                'mahasiswa_id' => '116110031',
                 'matakuliah_id' => '3',
                 'nilai' => 'A'
             ],
             [
-                'mahasiswa_id' => '1',
+                'mahasiswa_id' => '116110031',
                 'matakuliah_id' => '4',
                 'nilai' => 'A'
             ],

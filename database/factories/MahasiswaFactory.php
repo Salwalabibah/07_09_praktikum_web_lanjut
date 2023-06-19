@@ -20,10 +20,7 @@ class MahasiswaFactory extends Factory
             //
             'Nim'=>$this->faker->randomNumber(9, true),
             'Nama'=>$this->faker->name(),
-            'Email'=>$this->faker->email(),
-            'Tanggal_Lahir'=>$this->faker->date(),
             'Jurusan'=>$this->faker->randomElement(['Teknik Informatika', 'Sistem Informasi Bisnis']),
-            'No_Handphone'=>$this->faker->randomNumber(9, true),
         ];
     }
 }

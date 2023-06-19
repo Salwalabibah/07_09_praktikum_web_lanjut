@@ -26,25 +26,19 @@
 
     <table class="table table-bordered">
         <tr>
-            <th>Id</th>
             <th>Nim</th>
             <th>Nama</th>
-            <th>Email</th>
-            <th>Tanggal_Lahir</th>
+            <th>Image</th>
             <th>Kelas</th>
             <th>Jurusan</th>
-            <th>No_Handphone</th>
         </tr>
         @foreach ($mahasiswa as $mhs)
             <tr>
-                <td>{{$mhs->id}}</td>
                 <td>{{$mhs->Nim}}</td>
                 <td>{{$mhs->Nama}}</td>
-                <td>{{$mhs->Email}}</td>
-                <td>{{$mhs->Tanggal_Lahir}}</td>
+                <td><img src="{{asset('storage/'. $mhs->image_path)}}" alt="" style="max-width: 100px; max-height: 100px"></td>
                 <td>{{optional($mhs->kelas)->nama_kelas}}</td>
                 <td>{{$mhs->Jurusan}}</td>
-                <td>{{$mhs->No_Handphone}}</td>
                 <td>
                     <form action="{{route('mahasiswa.destroy', $mhs->Nim)}}" method="POST">
                         <a href="{{route('mahasiswa.show', $mhs->Nim)}}" class="btn btn-success">Show</a>

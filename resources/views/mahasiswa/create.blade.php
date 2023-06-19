@@ -19,7 +19,7 @@
                     </div>
                     @endif
                 </div>
-                <form action="{{route('mahasiswa.store')}}" method="post" id="myForm" class=" mx-3">
+                <form action="{{route('mahasiswa.store')}}" method="post" id="myForm" class=" mx-3" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="Nim">Nim</label>
@@ -30,17 +30,13 @@
                         <input type="text" name="Nama" id="Nama" class="form-control" aria-describedby="Nama">
                     </div>
                     <div class="form-group">
-                        <label for="Email">Email</label>
-                        <input type="text" name="Email" id="Email" class="form-control" aria-describedby="Email">
-                    </div>
-                    <div class="form-group">
-                        <label for="Tanggal Lahir">Tanggal Lahir</label>
-                        <input type="date" name="Tanggal Lahir" id="Tanggal Lahir" class="form-control" aria-describedby="Tanggal Lahir">
+                        <label for="image">Foto Mahasiswa</label>
+                        <input type="file" name="image_path" id="image_path" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="Kelas">Kelas</label>
                         {{-- <input type="text" name="Kelas" id="Kelas" class="form-control" aria-describedby="Kelas"> --}}
-                        <select name="Kelas" id="Kelas" class="form-control">
+                        <select name="kelas_id" id="kelas_id" class="form-control">
                             @foreach ($kelas as $kls)
                                 <option value="{{$kls->id}}">{{$kls->nama_kelas}}</option>
                             @endforeach
@@ -49,10 +45,6 @@
                     <div class="form-group">
                         <label for="Jurusan">Jurusan</label>
                         <input type="text" name="Jurusan" id="Jurusan" class="form-control" aria-describedby="Jurusan">
-                    </div>
-                    <div class="form-group">
-                        <label for="No_Handphone">No Handphone</label>
-                        <input type="text" name="No_Handphone" id="No_Handphone" class="form-control" aria-describedby="No_Handphone">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

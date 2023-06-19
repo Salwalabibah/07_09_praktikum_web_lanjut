@@ -11,11 +11,9 @@
                 <ul class="list-group list-group-flush"  class=" mx-3">
                     <li class="list-group-item"><b>Nim: </b>{{$mahasiswa->Nim}}</li>
                     <li class="list-group-item"><b>Nama: </b>{{$mahasiswa->Nama}}</li>
-                    <li class="list-group-item"><b>Email: </b>{{$mahasiswa->Email}}</li>
-                    <li class="list-group-item"><b>Tanggal Lahir: </b>{{$mahasiswa->Tanggal_Lahir}}</li>
+                    <li class="list-group-item"><b>Foto Mahasiswa: </b><img src="{{asset('storage/'. $mahasiswa->image_path)}}" alt="" style="max-width: 100px; max-height: 100px"></li>
                     <li class="list-group-item"><b>Kelas: </b>{{$mahasiswa->kelas->nama_kelas}}</li>
                     <li class="list-group-item"><b>Jurusan: </b>{{$mahasiswa->Jurusan}}</li>
-                    <li class="list-group-item"><b>No Handphone: </b>{{$mahasiswa->No_Handphone}}</li>
                 </ul>
             </div>
             <a href="{{route('mahasiswa.index')}}" class="btn btn-success m-3">Kembali</a>

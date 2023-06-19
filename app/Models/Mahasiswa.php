@@ -10,7 +10,7 @@ class Mahasiswa extends Model
     use HasFactory;
     protected $table = "mahasiswas";
     public $timestamps = false;
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'Nim';
 
     /**
      * @var array
@@ -18,11 +18,9 @@ class Mahasiswa extends Model
     protected $fillable = [
         'Nim',
         'Nama',
-        'Email',
-        'Tanggal_Lahir',
-        'Kelas',
+        'image_path',
         'Jurusan',
-        'No_Handphone',
+        'kelas_id'
     ];
     public function kelas(){
         return $this -> belongsTo(Kelas::class);

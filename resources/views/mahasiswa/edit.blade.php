@@ -19,7 +19,7 @@
                 </div>
                 @endif
             </div>
-            <form action="{{route('mahasiswa.update', $mahasiswa->Nim)}}" method="post" id="myForm"  class=" mx-3">
+            <form action="{{route('mahasiswa.update', $mahasiswa->Nim)}}" method="post" id="myForm"  class=" mx-3" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
@@ -31,16 +31,13 @@
                     <input type="text" name="Nama" id="Nama" class="form-control" aria-describedby="Nama" value="{{$mahasiswa->Nama}}">
                 </div>
                 <div class="form-group">
-                    <label for="Email">Email</label>
-                    <input type="text" name="Email" id="Email" class="form-control" aria-describedby="Email" value="{{$mahasiswa->Email}}">
-                </div> <div class="form-group">
-                    <label for="Tanggal_Lahir">Tanggal Lahir</label>
-                    <input type="date" name="Tanggal_Lahir" id="Tanggal_Lahir" class="form-control" aria-describedby="Tanggal_Lahir" value="{{$mahasiswa->Tanggal_Lahir}}">
+                    <label for="image">Foto Mahasiswa: </label>
+                    <input type="file" name="image_path" id="image_path" class="form-control" required="required" value="{{$mahasiswa->image_path}}"><br>
                 </div>
                 <div class="form-group">
                     <label for="Kelas">Kelas</label>
                     {{-- <input type="text" name="Kelas" id="Kelas" class="form-control" aria-describedby="Kelas" value="{{$mahasiswa->kelas->nama_kelas}}"> --}}
-                    <select name="Kelas" id="Kelas" class="form-control">
+                    <select name="kelas_id" id="kelas_id" class="form-control">
                         @foreach ($kelas as $kls)
                             <option value="{{$kls->id}}" {{$mahasiswa->kelas_id == $kls->id ? 'selected' : ''}}>{{$kls->nama_kelas}}</option>
                         @endforeach
@@ -49,10 +46,6 @@
                 <div class="form-group">
                     <label for="Jurusan">Jurusan</label>
                     <input type="text" name="Jurusan" id="Jurusan" class="form-control" aria-describedby="Jurusan" value="{{$mahasiswa->Jurusan}}">
-                </div>
-                <div class="form-group">
-                    <label for="No_Handphone">No Handphone</label>
-                    <input type="text" name="No_Handphone" id="No_Handphone" class="form-control" aria-describedby="No_Handphone" value="{{$mahasiswa->No_Handphone}}">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
